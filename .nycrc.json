@@ -3,13 +3,14 @@
         ".ts",
         ".tsx"
     ],
+    "include": [
+      "src/ToJSON/**/*.ts",
+      "src/ToGEDCOM/**/*.ts"
+    ],
     "exclude": [
-        "**/*.d.ts",
-        "tests/*",
-        "**/Statistics.ts",
-        "**/StatisticLine.ts",
-        "**/index.ts",
-        "**/*.js"
+      "**/*.d.ts",
+      "**/Statistics.ts",
+      "**/StatisticLine.ts"
     ],
     "reporter": [
         "text"

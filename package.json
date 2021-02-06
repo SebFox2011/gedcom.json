@@ -4,6 +4,7 @@
   "description": "Import and Export any JS-Object from or to GEDCOM Format",
   "main": "dist/index.js",
   "scripts": {
+    "demo:GEDCOM": "ts-node src/index.ts --path 'examples/simpsons.json' --convertto GEDCOM",
     "demo:JSON": "ts-node src/index.ts --path 'examples/simpsons.ged'",
     "demoFile:JSON": "ts-node src/index.ts --path 'examples/simpsons.ged' --out 'test.json'",
     "test": "nyc mocha",
