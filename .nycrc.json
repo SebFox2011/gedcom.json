@@ -13,6 +13,7 @@
       "**/StatisticLine.ts"
     ],
     "reporter": [
+        "lcov",
         "text"
     ],
     "all": true
