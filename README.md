@@ -6,15 +6,19 @@ This package can be used to parse a file or a string from gedcom format to an ob
 
 :warning: **Conversion from JSON or JS to GEDCOM is currently under development** :warning:
 
-A [predefined yaml configuration file](src/options/version551.yaml) ([GEDCOM Version 5.5.1](https://edge.fscdn.org/assets/img/documents/ged551-5bac5e57fe88dd37df0e153d9c515335.pdf)) is already included for parsing the data. This is based on the original long name of the gedcom tags and should reflect the structure as best as possible. It's used by default if no other configuration is given.
+A [predefined yaml configuration file](/options/version551.yaml) ([GEDCOM Version 5.5.1](https://edge.fscdn.org/assets/img/documents/ged551-5bac5e57fe88dd37df0e153d9c515335.pdf)) is already included for parsing the data. This is based on the original long name of the gedcom tags and should reflect the structure as best as possible. It's used by default if no other configuration is given.
 
 So this file can be used as a template if the target object should look different.
+
+## Why
+
+This is just a side project to import (and later export) GEDCOM files to another project of myself [Visual Family Tree](https://github.com/Jisco/VisualFamilyTree).
 
 I am aware that there are already several parsers for the gedcom format. However, I have found few that parse directly into an javascript object and if so, then you have to parse\search this object in order to be able to use it for your own purpose. I want to avoid this parsing and searching by parsing directly to the target format.
 
 **Through this own definition of how the parsing should be done, it is possible to process files or lines that differ from the original GEDCOM format.**
 
-:file_folder: There are 6 example gedcom files files available which i found on the internet. I used this files to test against. All files can be found in the "examples" subfolder.  Next to the gedcom files are the converted json files, which were created with this package.
+:file_folder: There are 6 example gedcom files available which i found on the internet. I used this files to test against. All files can be found in the ["examples"](/examples) subfolder.  Next to the gedcom files are the converted json files, which were created with this package.
 
 ## How-To
 
@@ -223,14 +227,14 @@ Result
 
 ```javascript
 {
-  	Individuals: [
-        {
-            Id: "@Abraham_Simpson@",
-            Surname: "Simpson",
-            Givenname: "Abraham",
-            Fullname: "Abraham /Simpson/"
-        }
-  	]
+  Individuals: [
+    {
+      Id: "@Abraham_Simpson@",
+      Surname: "Simpson",
+      Givenname: "Abraham",
+      Fullname: "Abraham /Simpson/"
+    }
+  ]
 }
 ```
 
@@ -268,9 +272,10 @@ Result
 
 ```javascript
 {
-  	Individuals: {
-        Id: "@Abraham_Simpson@"
-    }
+  Individuals: 
+  {
+    Id: "@Abraham_Simpson@"
+  }
 }
 ```
 
@@ -285,14 +290,15 @@ Result
 
 ```javascript
 {
-  	Individuals: [
-        {
-            Id: "@Abraham_Simpson@"
-        },
-        {
-            Id: "@Homer_Simpson@"
-        }
-    ]
+  Individuals: 
+  [
+    {
+      Id: "@Abraham_Simpson@"
+    },
+    {
+      Id: "@Homer_Simpson@"
+    }
+  ]
 }
 ```
 
@@ -317,11 +323,12 @@ Result
 
 ```javascript
 {
-  	Individuals: [
-        {
-            Id: "@Abraham_Simpson@"
-        }
-    ]
+  Individuals: 
+  [
+    {
+      Id: "@Abraham_Simpson@"
+    }
+  ]
 }
 ```
 
@@ -352,14 +359,10 @@ Result:
 
 ```javascript
 {
-  	Notes:
-    {
-        Value: [
-            "A",
-            "B",
-            "C,D"
-        ]
-    }
+  Notes:
+  {
+    Value: [ "A", "B", "C,D" ]
+  }
 }
 ```
 
@@ -413,22 +416,23 @@ Result:
 
 ```javascript
 {
-  	Date:
+  Date:
+  {
+    Start: 
     {
-        Start: {
-            JSDate: new Date(1980, 1, 4, 0, 0 , 0),
-            HasYear: true,
-            HasMonth: true,
-            HasDay: true
-        },
-        End: {
-        	JSDate: new Date(1999, 5, 4, 0, 0 , 0),
-             HasYear: true,
-             HasMonth: true,
-             HasDay: true
-        },
-        Initial: "FROM 4 FEB 1980 TO 4 JUN 1999",
-    }
+      JSDate: new Date(1980, 1, 4, 0, 0 , 0),
+      HasYear: true,
+      HasMonth: true,
+      HasDay: true
+    },
+    End: {
+      JSDate: new Date(1999, 5, 4, 0, 0 , 0),
+      HasYear: true,
+      HasMonth: true,
+      HasDay: true
+    },
+    Initial: "FROM 4 FEB 1980 TO 4 JUN 1999",
+  }
 }
 ```
 
@@ -472,10 +476,10 @@ Result:
 
 ```javascript
 {
-  	Notes:
-    {
-        Text: `1 | ABC | ...`
-    }
+  Notes:
+  {
+    Text: `1 | ABC | ...`
+  }
 }
 ```
 
@@ -509,15 +513,15 @@ Result:
 
 ```javascript
 {
- 	Date:
-    {
-        Value: new Date(1999, 5, 4, 14, 35 , 22),	// Value is date and time combined
-        HasYear: true,
-        HasMonth: true,
-        HasDay: true,
-        Original: "4 JUN 1999",
-        Time: "14:35:22"  // is own property because of TIME has a property defined
-    }
+  Date:
+  {
+    Value: new Date(1999, 5, 4, 14, 35 , 22),	// Value is date and time combined
+    HasYear: true,
+    HasMonth: true,
+    HasDay: true,
+    Original: "4 JUN 1999",
+    Time: "14:35:22"  // is own property because of TIME has a property defined
+  }
 }
 ```
 
@@ -540,14 +544,14 @@ Result:
 
 ```javascript
 {
- 	Date:
-    {
-        Value: new Date(1999, 5, 4, 14, 35 , 22),	// Value is date and time combined
-        HasYear: true,
-        HasMonth: true,
-        HasDay: true,
-        Original: "4 JUN 1999 14:35:22"	// date and time combined, because the original time value will else be lost	 
-    }
+Date:
+  {
+    Value: new Date(1999, 5, 4, 14, 35 , 22),	// Value is date and time combined
+    HasYear: true,
+    HasMonth: true,
+    HasDay: true,
+    Original: "4 JUN 1999 14:35:22"	// date and time combined, because the original time value will else be lost	 
+  }
 }
 ```
 
@@ -570,7 +574,7 @@ Result:
 
 ```javascript
 {
-  	Note: [ "Note1", "Note2" ]
+    Note: [ "Note1", "Note2" ]
 }
 ```
 
@@ -587,7 +591,7 @@ Result (last value wins):
 
 ```javascript
 {
-  	Note: "Note2"
+    Note: "Note2"
 }
 ```
 
@@ -623,17 +627,18 @@ Result:
 
 ```javascript
 {
-  	A: [
-        // parsed Tag C
-        {
-            Value_C: "Value_Of_C"
-        },
-        // parsed Tag B merged with Tag D
-        {
-            Value_B: "Value_Of_B",
-            Value_D: "Value_Of_D"
-        }
-    ]
+  A: 
+  [
+    // parsed Tag C
+    {
+      Value_C: "Value_Of_C"
+    },
+    // parsed Tag B merged with Tag D
+    {
+      Value_B: "Value_Of_B",
+      Value_D: "Value_Of_D"
+    }
+  ]
 }
 ```
 
@@ -667,17 +672,18 @@ Result:
 
 ```javascript
 {
-  	A: [
-        // parsed Tag B merged with Tag D
-        {
-            Value_B: "Value_Of_B",
-            Value_D: "Value_Of_D"
-        },        
-        // parsed Tag C
-        {
-            Value_C: "Value_Of_C"
-        },
-    ]
+A: 
+  [
+    // parsed Tag B merged with Tag D
+    {
+      Value_B: "Value_Of_B",
+      Value_D: "Value_Of_D"
+    },        
+    // parsed Tag C
+    {
+      Value_C: "Value_Of_C"
+    },
+  ]
 }
 ```
 
@@ -708,10 +714,10 @@ Result:
 
 ```javascript
 {
-  	Notes: {
-        Id: "@N00010@",
-        Text: [RCKarnes.ged]In Norse mythology, the god Bor, or Borr was the father of Odin, Ve and Vili by the frost giantess Bestla.  Bor was the son of the giant Buri....
-    }
+  Notes: {
+    Id: "@N00010@",
+    Text: [RCKarnes.ged]In Norse mythology, the god Bor, or Borr was the father of Odin, Ve and Vili by the frost giantess Bestla.  Bor was the son of the giant Buri....
+  }
 }
 ```
 
@@ -741,12 +747,14 @@ Result:
 
 ```javascript
 {
-	Notes: {
-         Id: "@N00010@",
-         Events: {
-            Name: "RCKarnes-RootsWeb & John D Newport-Ancestry.com (johndnewport@valornet.com)",
-          }
-     }
+  Notes: 
+  {
+    Id: "@N00010@",
+    Events: 
+    {
+      Name: "RCKarnes-RootsWeb & John D Newport-Ancestry.com (johndnewport@valornet.com)",
+    }
+  }
 }
 ```
 
@@ -785,9 +793,10 @@ Result:
 
 ```js
 {
-    What: {
-        Id: 'ID'
-    }
+  What: 
+  {
+    Id: 'ID'
+  }
 }
 ```
 
@@ -847,10 +856,10 @@ Result:
 
 ```javascript
 {
-	Persons:
-    {
-        EMail: [ 'email@test.com', 'anotherEmail@test.com' ]
-    }
+  Persons:
+  {
+    EMail: [ 'email@test.com', 'anotherEmail@test.com' ]
+  }
 }
 ```
 
@@ -883,10 +892,10 @@ Result:
 
 ```javascript
 {
- 	Persons:
-    {
-        EMail: [ 'mail:email@@test.com', 'mail:anotherEmail@@test.com' ]
-    }
+  Persons:
+  {
+  EMail: [ 'mail:email@@test.com', 'mail:anotherEmail@@test.com' ]
+  }
 }
 ```
 
@@ -913,10 +922,10 @@ Result:
 
 ```javascript
 {
- 	Persons:
-    {
-        Note: 'Whatever'
-    }
+  Persons: 
+  { 
+    Note: 'Whatever' 
+  }
 }
 ```
 
